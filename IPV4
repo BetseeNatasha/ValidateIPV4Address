@@ -1,0 +1,42 @@
+package securin;
+
+import java.util.Scanner;
+
+public class ValidateIPV4Address {
+
+	public static void main(String[] args) {
+Scanner sc= new Scanner(System.in);
+		System.out.println("Enter an IP address to validate:");
+		String ip = sc.nextLine();
+		sc.close(); 
+
+		if (isValidIPAddress(ip)) {
+			System.out.println("Valid IP Address");
+		} else {
+			System.out.println("Invalid IP Address");
+		}
+		
+	}
+
+ static boolean isValidIPAddress(String ip) {
+	 		String[] parts = ip.split("\\.");
+	 				if (parts.length != 4) {
+			return false;
+	 				}
+	 				for (String part: parts) {
+	 										if (part.isEmpty() || part.length() > 3) {
+	 												return false;
+	 										}
+	 										try {
+	 												int num = Integer.parseInt(part);
+	 												if (num < 0 || num > 255) {
+	 														return false;
+	 												}
+	 										} catch (NumberFormatException e) {
+	 												return false;
+	 										}
+	 						}
+		return true;
+	}
+
+}
